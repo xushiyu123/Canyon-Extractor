@@ -38,6 +38,7 @@ the tomcat download url:https://tomcat.apache.org/download-80.cgi#8.5.45; the fo
 
 (4) visit the url of this service via web browser and ensure the service runs successfully.
 
+![image](https://github.com/xushiyu123/Canyon-Extractor/blob/master/Figs/Fig3.png)
 
 To avoid using some third party librarys, dem file must be converted into txt form ,and must be named as dem30 (to be identified by the web service). You can use some GIS software (e.g: ArcGIS, MapGIS) to translate dem files in other forms (e.g: tiff, img) into ASCII form (txt).
 
@@ -47,18 +48,20 @@ To avoid using some third party librarys, dem file must be converted into txt fo
 # 2. Operation instructions
 
 ## 2.1 GUI
-
+![image](https://github.com/xushiyu123/Canyon-Extractor/blob/master/Figs/Fig1.png)
 
 ## 2.2 Operation
 2.2.1 click the first "+" button to browse files and select your Vector river data;
 
 2.2.2 click the second "+" button to browse folders and select an empty folder to save the output data;
 
-2.2.3 Fill in the textbox beside the label "Result name" to name the output file;
+2.2.3 Fill the name of output file in the textbox beside the label "Result name";
 
 2.2.4 Fill an url in the textbox beside the label "Service" to determine thr web service for elevations;
 
 2.2.5 Click the "Test" button to check the connection of the service, and a meessageBox will tells you whether the connection succeeds or fails;
+
+![image](https://github.com/xushiyu123/Canyon-Extractor/blob/master/Figs/Fig2.png)
 
 2.2.6 Fill a number in the textbox beside the label "WT" which sets the basic width of the river buffers, and WT of the experimental data is 1000 (a bit larger number will be OK either);
 
@@ -68,4 +71,6 @@ To avoid using some third party librarys, dem file must be converted into txt fo
 
 2.2.9 At last, Cilck "Run" button to start the program, and a meessageBox will tells you whether the extraction succeeds or fails;
 
-2.2.10 Attain the output data from the output folder.
+![image](https://github.com/xushiyu123/Canyon-Extractor/blob/master/Figs/Fig4.png)
+
+2.2.10 Get the output data from the output folder.
