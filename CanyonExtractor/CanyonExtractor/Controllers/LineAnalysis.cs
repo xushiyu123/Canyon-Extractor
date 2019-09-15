@@ -6,7 +6,7 @@ using CanyonExtractor.Data;
 namespace CanyonExtractor.Controllers
 {
     class LineAnalysis
-    {       
+    {
         /// <summary>
         /// Cross profile analysis
         /// </summary>
@@ -56,41 +56,27 @@ namespace CanyonExtractor.Controllers
         /// <param name="pointCollection"></param>
         /// <param name="enclosurePara"></param>
         /// <returns></returns>
-        public List<CurvePeak> GetCurvePeak(ProfileLine pline, IPointCollection pointCollection,
-            int enclosurePara, int code)
+        public List<CurvePeak> GetCurvePeak(ProfileLine pline,int enclosurePara, int code)
         {
             List<CurvePeak> peaks = new List<CurvePeak>();
-            double min = Min(pline);
-            if (min >= 100)//Box canyon
+            ProfileLine epline = Envelope(pline, enclosurePara);
+            switch (code)
             {
-                CurvePeak curvePeak = new CurvePeak();
-                curvePeak.Startx = pline.X[0];
-                curvePeak.Endx = pline.X[pline.X.Count - 1];
-                curvePeak.Length = curvePeak.Endx - curvePeak.Endx;
-                curvePeak.Amplitude = Max(pline) - min;
-                peaks.Add(curvePeak);
-            }
-            else
-            {
-                ProfileLine epline = Envelope(pline, enclosurePara);
-                switch (code)
-                {
-                    case 0://envelop and accumulate mean curve
-                        ProfileLine apline = AccAverge(epline);
-                        ProfileLine dpline = Differ(epline, apline);
-                        peaks = FindPeak(dpline, epline, epline, 30);
-                        break;
-                    case 1://Secondary difference
-                        ProfileLine spline = SecondDerive(epline);
-                        peaks = FindPeakByS(spline, epline, 30);
-                        break;
-                    case 2:
-                        ProfileLine mpline = Morphologize(epline, 5, 100);
-                        ProfileLine smpline = SecondDerive(mpline);
-                        peaks = FindPeakByS(smpline, mpline, 30);
-                        break;
-                    default: break;
-                }
+                case 0://envelop and accumulate mean curve
+                    ProfileLine apline = AccAverge(epline);
+                    ProfileLine dpline = Differ(epline, apline);
+                    peaks = FindPeak(dpline, epline, epline, 30);
+                    break;
+                case 1://Secondary difference
+                    ProfileLine spline = SecondDerive(epline);
+                    peaks = FindPeakByS(spline, epline, 30);
+                    break;
+                case 2:
+                    ProfileLine mpline = Morphologize(epline, 5, 100);
+                    ProfileLine smpline = SecondDerive(mpline);
+                    peaks = FindPeakByS(smpline, mpline, 30);
+                    break;
+                default: break;
             }
             return peaks;
         }
@@ -389,7 +375,7 @@ namespace CanyonExtractor.Controllers
                 }
             }
             return dp;
-        }       
+        }
         /// <summary>
         /// search peak
         /// </summary>

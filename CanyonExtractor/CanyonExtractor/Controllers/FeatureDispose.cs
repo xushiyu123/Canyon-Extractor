@@ -55,11 +55,11 @@ namespace CanyonExtractor.Controllers
                     bufferLines.RightIpc = bufferlineClass.Reverse(rightCollection);//reverse the right borderline, ensure its clock wise
                     ProfileLine leftProfile = ProfileByAPI(bufferLines.LeftIpc, 30);//get topologic profile of left borderline
                     ProfileLine rightProfile = ProfileByAPI(bufferLines.RightIpc, 30);//get topologic profile of right borderline
-                    ProfileLine waterProfile = ProfileByAPI(pointCollection, 30);//get topologic profile of chanel
-                    ProfileLine leftProfileN = NewProfile(leftProfile, waterProfile);
-                    ProfileLine rightProfileN = NewProfile(rightProfile, waterProfile);
-                    List<CurvePeak> leftPeaks = lineAnalysis.GetCurvePeak(leftProfile, bufferLines.LeftIpc, enclosurePara, code1);//获取右侧界线波峰
-                    List<CurvePeak> rightPeaks = lineAnalysis.GetCurvePeak(rightProfile, bufferLines.RightIpc, enclosurePara, code1);//获取左侧界线波峰
+                    //ProfileLine waterProfile = ProfileByAPI(pointCollection, 30);//get topologic profile of chanel
+                    //ProfileLine leftProfileN = NewProfile(leftProfile, waterProfile);
+                    //ProfileLine rightProfileN = NewProfile(rightProfile, waterProfile);
+                    List<CurvePeak> leftPeaks = lineAnalysis.GetCurvePeak(leftProfile, enclosurePara, code1);//获取右侧界线波峰
+                    List<CurvePeak> rightPeaks = lineAnalysis.GetCurvePeak(rightProfile, enclosurePara, code1);//获取左侧界线波峰
                     //List<CurvePeak> leftPeaks = lineAnalysis.GetCurvePeak(leftProfileN, bufferLines.LeftIpc, enclosurePara, code1);//获取右侧界线波峰
                     //List<CurvePeak> rightPeaks = lineAnalysis.GetCurvePeak(rightProfileN, bufferLines.RightIpc, enclosurePara, code1);//获取左侧界线波峰
                     List<PeakPair> pairs = new List<PeakPair>();//generate peak pairs

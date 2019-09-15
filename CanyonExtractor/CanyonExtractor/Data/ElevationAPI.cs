@@ -14,6 +14,30 @@ namespace CanyonExtractor.Data
         public static Stopwatch stopwatch = new Stopwatch();//time recorder
         public static string url = "http://127.0.0.1:8080/Spring/api/elevation/linestring";//URL of web service
         /// <summary>
+        /// test the connection of web service
+        /// </summary>
+        /// <returns>IsSuccess</returns>
+        public static bool TestApi()
+        {
+            bool success = false;
+            StringBuilder stringBuilder = new StringBuilder(url + "?path=0 0,100 100&step=10");
+            HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create(stringBuilder.ToString());
+            webRequest.Method = "get";
+            webRequest.ContentType = "application/json;charset=utf-8";
+            try
+            {
+                HttpWebResponse webResponse = (HttpWebResponse)webRequest.GetResponse();
+                if (webResponse.StatusCode == HttpStatusCode.OK)
+                {
+                    success = true;
+                }
+            }
+            catch (WebException e)
+            {  }
+            webRequest.Abort();
+            return success;
+        }
+        /// <summary>
         /// attain elevations from web service
         /// </summary>
         /// <param name="lon1"></param>
@@ -60,6 +84,7 @@ namespace CanyonExtractor.Data
             {
                 MessageBox.Show(e.ToString());
             }
+            webRequest.Abort();
             stopwatch.Stop();
             return profiles;
         }
