@@ -41,6 +41,9 @@ the tomcat download url:https://tomcat.apache.org/download-80.cgi#8.5.45; the fo
 
 To avoid using some third party librarys, dem file must be converted into txt form ,and must be named as dem30 (to be identified by the web service). You can use some GIS software (e.g: ArcGIS, MapGIS) to translate dem files in other forms (e.g: tiff, img) into ASCII form (txt).
 
+### 1.2.3 Figs
+	some screenshots of the program.
+
 # 2. Operation instructions
 
 ## 2.1 GUI
